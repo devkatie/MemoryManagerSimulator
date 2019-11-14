@@ -11,7 +11,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/*
+ * Written by:
+ * 		Katie Porter
+ * 		COM 310, Prof. Sister Jane
+ * 		Project 2: Memory Manager Simulator
+ * 		repo: https://github.com/devkatie/MemoryManagerSimulator
+ */
 public class MainApp extends Application {
 
 	private Stage primaryStage;
