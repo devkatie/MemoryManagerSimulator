@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,8 +13,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
+/*
+ * Written by:
+ * 		Katie Porter
+ * 		COM 310, Prof. Sister Jane
+ * 		Project 2: Memory Manager Simulator
+ * 		repo: https://github.com/devkatie/MemoryManagerSimulator
+ */
 public class GUIController implements Initializable {
 
 	@FXML
@@ -32,23 +42,39 @@ public class GUIController implements Initializable {
 	private Button addMemBtn;
 	@FXML
 	private Button removeMemBtn;
+	@FXML
+	private Text maxMemLabel;
+
+	public void updateMaxMem() {
+		/*
+		 * updating the max memory text field
+		 * that is at the bottom of the memory
+		 * visualization
+		 */
+		if (!(totalMemTextField.getText().equals(""))) {
+			maxMemLabel.setText(this.totalMemTextField.getText() + "K");
+		} else {
+			maxMemLabel.setText("MAX");
+		}
+
+	}
 
 	public void compactMemBtnAction() {
-		// pushing button does whatever's here
+//		pushing button does whatever's here
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
 		alert.show();
 	}
 
 	public void addMemBtnAction() {
-		// pushing button does whatever's here
+//		pushing button does whatever's here
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
 		alert.show();
 	}
 
 	public void removeMemBtnAction() {
-		// pushing button does whatever's here
+//		pushing button does whatever's here
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
 		alert.show();
@@ -56,8 +82,16 @@ public class GUIController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		/*
+		 * ititialize() is going to do/compile
+		 * whatever is written here at runtime
+		 */
+		
+//		ComboBox setups
 		algorithmComboBox.getItems().addAll("First Fit", "Best Fit", "Worst Fit");
 		pidComboBox.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		
+//		TextField Listeners to ensure only numbers are entered
 		totalMemTextField.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -77,7 +111,7 @@ public class GUIController implements Initializable {
 		processSizeTextField.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				if (!newValue.matches("regex")) {
+				if (!newValue.matches("\\d{0,4}?")) {
 					processSizeTextField.setText(oldValue);
 				}
 			}
