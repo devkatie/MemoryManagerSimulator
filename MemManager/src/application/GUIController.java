@@ -8,6 +8,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -33,16 +35,25 @@ public class GUIController implements Initializable {
 
 	public void compactMemBtnAction() {
 		// pushing button does whatever's here
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setContentText("We didn't program this yet!");
+		alert.show();
 	}
-	
+
 	public void addMemBtnAction() {
 		// pushing button does whatever's here
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setContentText("We didn't program this yet!");
+		alert.show();
 	}
-	
+
 	public void removeMemBtnAction() {
 		// pushing button does whatever's here
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setContentText("We didn't program this yet!");
+		alert.show();
 	}
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		algorithmComboBox.getItems().addAll("First Fit", "Best Fit", "Worst Fit");

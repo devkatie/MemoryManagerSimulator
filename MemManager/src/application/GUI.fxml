@@ -73,11 +73,11 @@
 				<Label layoutX="14.0" layoutY="169.0" text="OS Memory:" />
 				<Separator layoutX="-3.0" layoutY="186.0" prefHeight="25.0" prefWidth="324.0" />
 				<Separator layoutX="-3.0" layoutY="312.0" prefHeight="17.0" prefWidth="324.0" />
-				<Button fx:id="compactMemBtn" layoutX="91.0" layoutY="329.0" mnemonicParsing="false" text="COMPACT MEMORY!!" />
+				<Button fx:id="compactMemBtn" layoutX="91.0" layoutY="329.0" mnemonicParsing="false" onAction="#compactMemBtnAction" text="COMPACT MEMORY!!" />
 				<Label layoutX="14.0" layoutY="212.0" text="Process ID:" />
 				<Label layoutX="14.0" layoutY="253.0" text="Process Size:" />
-				<Button fx:id="addMemBtn" layoutX="24.0" layoutY="288.0" mnemonicParsing="false" text="ADD TO MEMORY" />
-				<Button fx:id="removeMemBtn" layoutX="148.0" layoutY="288.0" mnemonicParsing="false" text="REMOVE FROM MEMORY" />
+				<Button fx:id="addMemBtn" layoutX="24.0" layoutY="288.0" mnemonicParsing="false" onAction="#addMemBtnAction" text="ADD TO MEMORY" />
+				<Button fx:id="removeMemBtn" layoutX="148.0" layoutY="288.0" mnemonicParsing="false" onAction="#removeMemBtnAction" text="REMOVE FROM MEMORY" />
 				<TextField fx:id="totalMemTextField" layoutX="116.0" layoutY="125.0" />
 				<TextField fx:id="osMemTextField" layoutX="116.0" layoutY="165.0" />
 				<TextField fx:id="processSizeTextField" layoutX="116.0" layoutY="247.0" />
