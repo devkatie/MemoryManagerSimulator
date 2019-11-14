@@ -7,20 +7,28 @@ import javafx.scene.control.TextField;
 
 public class GUIController {
 
-	@FXML private ComboBox<?> algorithmComboBox;
+	@FXML
+	private ComboBox<?> algorithmComboBox;
 
-	@FXML private Button compactMemBtn;
+	@FXML
+	private Button compactMemBtn;
 
-	@FXML private Button addMemBtn;
+	@FXML
+	private Button addMemBtn;
 
-	@FXML private Button removeMemBtn;
+	@FXML
+	private Button removeMemBtn;
 
-	@FXML private TextField totalMemTextField;
+	@FXML
+	private TextField totalMemTextField;
 
-	@FXML private TextField osMemTextField;
+	@FXML
+	private TextField osMemTextField;
 
-	@FXML private TextField processSizeTextField;
+	@FXML
+	private TextField processSizeTextField;
 
-	@FXML private ComboBox<?> pidComboBox;
+	@FXML
+	private ComboBox<?> pidComboBox;
 
 }
