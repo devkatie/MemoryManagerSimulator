@@ -14,40 +14,42 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    private Stage primaryStage;
-    private VBox rootLayout;
+	private Stage primaryStage;
+	private VBox rootLayout;
 
-    @Override
-    public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Memory Manager");
-        this.primaryStage.getIcons().add(new Image("https://img7.androidappsapk.co/300/a/f/7/com.smartprojects.RAMOptimization.png"));
+	@Override
+	public void start(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+		this.primaryStage.setTitle("Memory Manager");
+		this.primaryStage.getIcons()
+				.add(new Image("https://img7.androidappsapk.co/300/a/f/7/com.smartprojects.RAMOptimization.png"));
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainApp.class.getResource("GUI.fxml"));
-        Parent root = null;
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(MainApp.class.getResource("GUI.fxml"));
+		Parent root = null;
 		try {
 			root = loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        
-     // Show the scene
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
 
-    }
-  
-    /**
-     * Returns the main stage.
-     * @return
-     */
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
+		// Show the scene
+		Scene scene = new Scene(root);
+		primaryStage.setScene(scene);
+		primaryStage.show();
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	}
+
+	/**
+	 * Returns the main stage.
+	 * 
+	 * @return
+	 */
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 }
