@@ -68,6 +68,7 @@
 				<Separator layoutX="-3.0" layoutY="51.0" prefHeight="25.0" prefWidth="647.0" />
 				<Label layoutX="14.0" layoutY="88.0" prefHeight="17.0" prefWidth="101.0" text="Select Algorithm:" />
 				<ComboBox fx:id="algorithmComboBox" layoutX="115.0" layoutY="84.0" prefWidth="150.0" promptText="-- Select --" visibleRowCount="3" />
+				
 				<Label fx:id="totalMemLabel" layoutX="14.0" layoutY="129.0" text="Total Memory:" />
 				<Label layoutX="14.0" layoutY="169.0" text="OS Memory:" />
 				<Separator layoutX="-3.0" layoutY="186.0" prefHeight="25.0" prefWidth="324.0" />
