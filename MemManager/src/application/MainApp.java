@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+
 /*
  * Written by:
  * 		Katie Porter
@@ -18,10 +20,10 @@ import javafx.stage.Stage;
  * 		Project 2: Memory Manager Simulator
  * 		repo: https://github.com/devkatie/MemoryManagerSimulator
  */
+
 public class MainApp extends Application {
 
 	private Stage primaryStage;
-	private VBox rootLayout;
 
 	@Override
 	public void start(Stage primaryStage) {
