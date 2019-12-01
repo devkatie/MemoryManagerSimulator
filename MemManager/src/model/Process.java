@@ -19,6 +19,7 @@ public class Process {
 		
 		
 	}
+	
 	public int getProcessID() {
 		return processID;
 	}
@@ -36,5 +37,10 @@ public class Process {
 	}
 	public void setPosition(int position) {
 		this.position = position;
+	}
+	
+	@Override
+	public String toString() {
+		return "[ID=" + processID + ", size=" + size + ", position=" + position + "]";
 	}
 }

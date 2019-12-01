@@ -12,7 +12,9 @@ public class MemoryList {
 		this.memorySize = memorySize;
 		this.list = new ArrayList<Process>();
 		list.add(new Process(0, osSize));
+		list.get(0).setPosition(0);
 		list.add(new Process(-1, memorySize - osSize));
+		list.get(1).setPosition(1);
 	}
 
 	public void addProcess(int processID, int processSize, int algorithm) {
@@ -39,8 +41,19 @@ public class MemoryList {
 	}
 
 	private void consolidateFreeSpace(int index) {
-		
-		
+		for(int i = 0; i < list.size() - 1; i++) {
+			if(list.get(i).getProcessID() == list.get(i + 1).getProcessID()) {
+				list.get(i).setSize(list.get(i).getSize() + list.get(i + 1).getSize());
+				list.remove(i+1);
+			}
+		}
+		setPositions();
+	}
+
+	private void setPositions() {
+		for(int i = 0; i < list.size(); i++) {
+			list.get(i).setPosition(i);
+		}
 	}
 
 	public void addWorstFit(int processID, int processSize) {
@@ -53,6 +66,7 @@ public class MemoryList {
 		list.add(position, new Process(processID, processSize));
 		list.get(position).setPosition(position);
 		updateGap(position + 1, processSize);
+		setPositions();
 	}
 
 	public void addBestFit(int processID, int processSize) {
@@ -70,6 +84,7 @@ public class MemoryList {
 		list.add(position, new Process(processID, processSize));
 		list.get(position).setPosition(position);
 		updateGap(position + 1, processSize);
+		setPositions();
 	}
 
 	public void addFirstFit(int processID, int processSize) {
@@ -82,7 +97,7 @@ public class MemoryList {
 		list.add(position, new Process(processID, processSize));
 		list.get(position).setPosition(position);
 		updateGap(position + 1, processSize);
-
+		setPositions();
 	}
 
 	private void updateGap(int position, int processSize) {
@@ -101,6 +116,19 @@ public class MemoryList {
 		}
 
 		return gapList;
+	}
+	
+	public void compact() {
+		int totalMemoryUsed = 0;
+		for(int i = 0; i < list.size() - 1; i++) {
+			if(list.get(i).getProcessID() != -1) {
+				totalMemoryUsed += list.get(i).getSize();
+			}else {
+				list.remove(i);
+			}
+		}
+		list.get(list.size() - 1).setSize(memorySize - totalMemoryUsed);
+		setPositions();
 	}
 
 	public ArrayList<Process> getList() {
