@@ -35,12 +35,13 @@ public class MemoryList {
 		for(int i = 0; i< list.size(); i++) {
 			if(list.get(i).getProcessID() == processID) {
 				list.get(i).setProcessID(-1);
-				consolidateFreeSpace(i);
+				
 			}
 		}
+		consolidateFreeSpace();
 	}
 
-	private void consolidateFreeSpace(int index) {
+	private void consolidateFreeSpace() {
 		for(int i = 0; i < list.size() - 1; i++) {
 			if(list.get(i).getProcessID() == list.get(i + 1).getProcessID()) {
 				list.get(i).setSize(list.get(i).getSize() + list.get(i + 1).getSize());

@@ -16,6 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import model.MemoryList;
 
 /*
  * Written by:
@@ -45,14 +46,20 @@ public class GUIController implements Initializable {
 	@FXML
 	private Text maxMemLabel;
 
+//DANNYCODE
+	private MemoryList memoryList = new MemoryList(2000, 200);
+//ENDDANNYCODE
+	
 	public void updateMaxMem() {
 		/*
-		 * updating the max memory text field
-		 * that is at the bottom of the memory
+		 * updating the max memory text field that is at the bottom of the memory
 		 * visualization
 		 */
+
 		if (!(totalMemTextField.getText().equals(""))) {
 			maxMemLabel.setText(this.totalMemTextField.getText() + "K");
+
+
 		} else {
 			maxMemLabel.setText("MAX");
 		}
@@ -61,6 +68,12 @@ public class GUIController implements Initializable {
 
 	public void compactMemBtnAction() {
 //		pushing button does whatever's here
+
+//DANNYCODE		
+		memoryList.compact();
+		System.out.println(memoryList.getList());
+//ENDDANNYCODE
+		
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
 		alert.show();
@@ -68,6 +81,13 @@ public class GUIController implements Initializable {
 
 	public void addMemBtnAction() {
 //		pushing button does whatever's here
+
+//DANNYCODE
+		memoryList.addProcess(pidComboBox.getValue(), Integer.parseInt(processSizeTextField.getText()),
+				parseAlgorithmCode(algorithmComboBox.getValue()));
+		System.out.println(memoryList.getList());
+//ENDDANNYCODE
+		
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
 		alert.show();
@@ -75,6 +95,12 @@ public class GUIController implements Initializable {
 
 	public void removeMemBtnAction() {
 //		pushing button does whatever's here
+		
+//DANNYCODE
+		memoryList.removeProcess(pidComboBox.getValue());
+		System.out.println(memoryList.getList());
+//ENDDANNYCODE		
+		
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
 		alert.show();
@@ -83,14 +109,13 @@ public class GUIController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		/*
-		 * ititialize() is going to do/compile
-		 * whatever is written here at runtime
+		 * ititialize() is going to do/compile whatever is written here at runtime
 		 */
-		
+
 //		ComboBox setups
 		algorithmComboBox.getItems().addAll("First Fit", "Best Fit", "Worst Fit");
 		pidComboBox.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-		
+
 //		TextField Listeners to ensure only numbers are entered
 		totalMemTextField.textProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -117,6 +142,22 @@ public class GUIController implements Initializable {
 			}
 		});
 
+	}
+
+	private int parseAlgorithmCode(String algorithmText) {
+		int code = 0;
+		switch (algorithmText) {
+		case "First Fit":
+			code = 0;
+			break;
+		case "Best Fit":
+			code = 1;
+			break;
+		case "Worst Fit":
+			code = 2;
+			break;
+		}
+		return code;
 	}
 
 }
