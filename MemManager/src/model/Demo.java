@@ -17,33 +17,18 @@ public class Demo {
 		
 		System.out.println(list.getList());
 		
-		list.removeProcess(4);
-		list.removeProcess(3);
+		list.addProcess(7, 1000, 0);
+		list.addProcess(8, 800, 0);
+		System.out.println(list.getWaitingQueue());
+		
 		list.removeProcess(5);
-		
+//		list.removeProcess(6);
 		System.out.println(list.getList());
-
-		list.addFirstFit(7, 100);
-		list.addFirstFit(8, 501);
+		System.out.println(list.getWaitingQueue());
 		
-		System.out.println(list.getList());
+		System.out.println(new OutputString(list).getOutputString());
 		
-		list.addWorstFit(10, 100);
 		
-		System.out.println(list.getList());
-		
-		list.addBestFit(11, 50);
-		
-		System.out.println(list.getList());
-		
-		list.removeProcess(1);
-		list.removeProcess(2);
-		
-		System.out.println(list.getList());
-		
-		list.compact();
-		
-		System.out.println(list.getList());
 		
 		
 	}

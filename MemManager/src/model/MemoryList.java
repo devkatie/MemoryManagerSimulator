@@ -5,12 +5,16 @@ import java.util.ArrayList;
 public class MemoryList {
 
 	private ArrayList<Process> list;
+	private ArrayList<Process> waitingQueue;
 	private int memorySize;
+	private int algorithmID;
 
 	public MemoryList(int memorySize, int osSize) {
 		super();
 		this.memorySize = memorySize;
 		this.list = new ArrayList<Process>();
+		this.waitingQueue = new ArrayList<Process>();
+		this.algorithmID = 0;
 		list.add(new Process(0, osSize));
 		list.get(0).setPosition(0);
 		list.add(new Process(-1, memorySize - osSize));
@@ -20,13 +24,33 @@ public class MemoryList {
 	public void addProcess(int processID, int processSize, int algorithm) {
 		switch (algorithm) {
 		case 0:
+			this.algorithmID = 0;
 			addFirstFit(processID, processSize);
 			break;
 		case 1:
+			this.algorithmID = 1;
 			addBestFit(processID, processSize);
 			break;
 		case 2:
+			this.algorithmID = 2;
 			addWorstFit(processID, processSize);
+			break;
+		}
+	}
+	
+	public void addProcess(Process process, int algorithm) {
+		switch (algorithm) {
+		case 0:
+			this.algorithmID = 0;
+			addFirstFit(process.getProcessID(), process.getSize());
+			break;
+		case 1:
+			this.algorithmID = 1;
+			addBestFit(process.getProcessID(), process.getSize());
+			break;
+		case 2:
+			this.algorithmID = 2;
+			addWorstFit(process.getProcessID(), process.getSize());
 			break;
 		}
 	}
@@ -38,6 +62,7 @@ public class MemoryList {
 				
 			}
 		}
+		consolidateFreeSpace();
 		consolidateFreeSpace();
 	}
 
@@ -60,6 +85,11 @@ public class MemoryList {
 	public void addWorstFit(int processID, int processSize) {
 		ArrayList<Process> gapList = buildGapList(processSize);
 		if (gapList.isEmpty()) {
+			Process p = new Process(processID, processSize);
+			if(!isInWaitingQueue(p)) {
+				waitingQueue.add(p);
+			}
+			
 			return;
 		}
 		gapList.sort((Process a, Process b) -> b.getSize() - a.getSize());
@@ -70,9 +100,22 @@ public class MemoryList {
 		setPositions();
 	}
 
+	private boolean isInWaitingQueue(Process p) {
+		for(int i = 0; i < waitingQueue.size(); i++) {
+			if(p.getProcessID() == waitingQueue.get(i).getProcessID()) {
+				return false;
+			}
+		}
+		return false;
+	}
+
 	public void addBestFit(int processID, int processSize) {
 		ArrayList<Process> gapList = buildGapList(processSize);
 		if (gapList.isEmpty()) {
+			Process p = new Process(processID, processSize);
+			if(!isInWaitingQueue(p)) {
+				waitingQueue.add(p);
+			}
 			return;
 		}
 
@@ -91,6 +134,10 @@ public class MemoryList {
 	public void addFirstFit(int processID, int processSize) {
 		ArrayList<Process> gapList = buildGapList(processSize);
 		if (gapList.isEmpty()) {
+			Process p = new Process(processID, processSize);
+			if(!isInWaitingQueue(p)) {
+				waitingQueue.add(p);
+			}
 			return;
 		}
 
@@ -130,6 +177,24 @@ public class MemoryList {
 		}
 		list.get(list.size() - 1).setSize(memorySize - totalMemoryUsed);
 		setPositions();
+
+	}
+
+
+	public ArrayList<Process> getWaitingQueue() {
+		return waitingQueue;
+	}
+
+	public void setWaitingQueue(ArrayList<Process> waitingQueue) {
+		this.waitingQueue = waitingQueue;
+	}
+
+	public int getAlgorithmID() {
+		return algorithmID;
+	}
+
+	public void setAlgorithmID(int algorithmID) {
+		this.algorithmID = algorithmID;
 	}
 
 	public ArrayList<Process> getList() {
