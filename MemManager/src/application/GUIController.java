@@ -77,14 +77,13 @@ public class GUIController implements Initializable {
 		outputTextArea.clear();
 		outputTextArea.setText(new OutputString(memoryList).getOutputString());
 
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setContentText("We didn't program this yet!");
-		alert.show();
+	
 	}
 
 	public void addMemBtnAction() {
 //		pushing button does whatever's here
 
+<<<<<<< HEAD
 		if (algorithmComboBox.getValue().equals("-- Select --")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setContentText("Please Choose an algorithm before continuing...");
@@ -95,6 +94,14 @@ public class GUIController implements Initializable {
 			outputTextArea.clear();
 			outputTextArea.setText(new OutputString(memoryList).getOutputString());
 		}
+=======
+		memoryList.addProcess(pidComboBox.getValue(), Integer.parseInt(processSizeTextField.getText()),
+				parseAlgorithmCode(algorithmComboBox.getValue()));
+
+		outputTextArea.clear();
+		outputTextArea.setText(new OutputString(memoryList).getOutputString());
+
+>>>>>>> branch 'master' of https://github.com/devkatie/MemoryManagerSimulator.git
 	}
 
 	public void removeMemBtnAction() {

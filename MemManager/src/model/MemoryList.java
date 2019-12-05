@@ -70,7 +70,7 @@ public class MemoryList {
 
 	
 // removes a process from the list and replaces it with EMPTY area. 
-// consolidateFreeSpace is called twice because the method may "forget" to consolidate two empty spaces 
+// consolidateFreeSpace is called twice (EDIT: THRICE!) because the method may "forget" to consolidate two empty spaces 
 // if a process seperating them has been deleted.
 	
 	public void removeProcess(int processID) {
@@ -80,6 +80,7 @@ public class MemoryList {
 
 			}
 		}
+		consolidateFreeSpace();
 		consolidateFreeSpace();
 		consolidateFreeSpace();
 		patchEmptySpace();
