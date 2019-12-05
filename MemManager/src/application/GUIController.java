@@ -18,6 +18,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import model.MemoryList;
+import model.OutputString;
 
 /*
  * Written by:
@@ -48,36 +49,34 @@ public class GUIController implements Initializable {
 	private Text maxMemLabel;
 	@FXML
 	private TextArea outputTextArea;
+	@FXML
+	private Button createMemoryButton;
 
-//DANNYCODE
 	private MemoryList memoryList;
-//ENDDANNYCODE
+
+	
+	public void createMemory() {
+				this.memoryList = new MemoryList(Integer.parseInt(totalMemTextField.getText()), Integer.parseInt(osMemTextField.getText()));
+				outputTextArea.clear();
+				outputTextArea.setText(new OutputString(memoryList).getOutputString());
+				
+	}
 	
 	public void updateMaxMem() {
 		/*
 		 * updating the max memory text field that is at the bottom of the memory
 		 * visualization
 		 */
-//DANNYCODE IM CHANGING THIS TO A "CREATE MEMORY" FUNCTION... WE CAN'T CHANGE MEM AND OS DYNAMICALLY
-		
-
-		if (!(totalMemTextField.getText().equals(""))) {
-			maxMemLabel.setText(this.totalMemTextField.getText() + "K");
-
-
-		} else {
-			maxMemLabel.setText("MAX");
-		}
 
 	}
 
 	public void compactMemBtnAction() {
 //		pushing button does whatever's here
 
-//DANNYCODE		
+	
 		memoryList.compact();
-		System.out.println(memoryList.getList());
-//ENDDANNYCODE
+		outputTextArea.clear();
+		outputTextArea.setText(new OutputString(memoryList).getOutputString());
 		
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
@@ -87,11 +86,13 @@ public class GUIController implements Initializable {
 	public void addMemBtnAction() {
 //		pushing button does whatever's here
 
-//DANNYCODE
+
 		memoryList.addProcess(pidComboBox.getValue(), Integer.parseInt(processSizeTextField.getText()),
 				parseAlgorithmCode(algorithmComboBox.getValue()));
-		System.out.println(memoryList.getList());
-//ENDDANNYCODE
+
+
+		outputTextArea.clear();
+		outputTextArea.setText(new OutputString(memoryList).getOutputString());
 		
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
@@ -101,10 +102,11 @@ public class GUIController implements Initializable {
 	public void removeMemBtnAction() {
 //		pushing button does whatever's here
 		
-//DANNYCODE
+
 		memoryList.removeProcess(pidComboBox.getValue());
-		System.out.println(memoryList.getList());
-//ENDDANNYCODE		
+		outputTextArea.clear();
+		outputTextArea.setText(new OutputString(memoryList).getOutputString());
+	
 		
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
