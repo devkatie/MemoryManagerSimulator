@@ -85,15 +85,16 @@ public class GUIController implements Initializable {
 	public void addMemBtnAction() {
 //		pushing button does whatever's here
 
-		memoryList.addProcess(pidComboBox.getValue(), Integer.parseInt(processSizeTextField.getText()),
-				parseAlgorithmCode(algorithmComboBox.getValue()));
-
-		outputTextArea.clear();
-		outputTextArea.setText(new OutputString(memoryList).getOutputString());
-
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setContentText("We didn't program this yet!");
-		alert.show();
+		if (algorithmComboBox.getValue().equals("-- Select --")) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setContentText("Please Choose an algorithm before continuing...");
+			alert.show();
+		} else {
+			memoryList.addProcess(pidComboBox.getValue(), Integer.parseInt(processSizeTextField.getText()),
+					parseAlgorithmCode(algorithmComboBox.getValue()));
+			outputTextArea.clear();
+			outputTextArea.setText(new OutputString(memoryList).getOutputString());
+		}
 	}
 
 	public void removeMemBtnAction() {
@@ -103,9 +104,6 @@ public class GUIController implements Initializable {
 		outputTextArea.clear();
 		outputTextArea.setText(new OutputString(memoryList).getOutputString());
 
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setContentText("We didn't program this yet!");
-		alert.show();
 	}
 
 	@Override
