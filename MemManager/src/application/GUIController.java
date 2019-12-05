@@ -77,9 +77,7 @@ public class GUIController implements Initializable {
 		outputTextArea.clear();
 		outputTextArea.setText(new OutputString(memoryList).getOutputString());
 
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setContentText("We didn't program this yet!");
-		alert.show();
+	
 	}
 
 	public void addMemBtnAction() {
@@ -91,9 +89,6 @@ public class GUIController implements Initializable {
 		outputTextArea.clear();
 		outputTextArea.setText(new OutputString(memoryList).getOutputString());
 
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setContentText("We didn't program this yet!");
-		alert.show();
 	}
 
 	public void removeMemBtnAction() {
@@ -103,9 +98,6 @@ public class GUIController implements Initializable {
 		outputTextArea.clear();
 		outputTextArea.setText(new OutputString(memoryList).getOutputString());
 
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setContentText("We didn't program this yet!");
-		alert.show();
 	}
 
 	@Override
