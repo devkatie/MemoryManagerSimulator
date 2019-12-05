@@ -11,43 +11,44 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="485.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GUIController">
+<VBox prefHeight="612.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GUIController">
 	<children>
-		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="593.0" prefWidth="764.0" VBox.vgrow="ALWAYS">
 			<children>
-				<Separator layoutX="310.0" layoutY="64.0" orientation="VERTICAL" prefHeight="424.0" prefWidth="25.0" />
-				<Text layoutX="157.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memory Manager Simulator" wrappingWidth="331.951171875">
+				<Separator layoutX="372.0" layoutY="131.0" orientation="VERTICAL" prefHeight="480.0" prefWidth="25.0" />
+				<Text layoutX="144.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memory Manager Simulator" wrappingWidth="480.9999916702509">
 					<font>
-						<Font name="Ink Free" size="26.0" />
+						<Font name="Ink Free" size="36.0" />
 					</font>
 				</Text>
-				<Separator layoutX="-3.0" layoutY="51.0" prefHeight="25.0" prefWidth="647.0" />
-				<Label layoutX="14.0" layoutY="88.0" prefHeight="17.0" prefWidth="101.0" text="Select Algorithm:" />
-				<ComboBox fx:id="algorithmComboBox" layoutX="115.0" layoutY="84.0" prefWidth="150.0" promptText="-- Select --" visibleRowCount="3" />
+				<Separator layoutX="5.0" layoutY="106.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="759.0" />
+				<Label layoutX="16.0" layoutY="357.0" prefHeight="21.0" prefWidth="129.0" text="Select Algorithm:" />
+				<ComboBox fx:id="algorithmComboBox" layoutX="154.0" layoutY="355.0" prefWidth="150.0" promptText="-- Select --" visibleRowCount="3" />
 
-				<Label fx:id="totalMemLabel" layoutX="15.0" layoutY="140.0" text="Total Memory:" />
-				<Label layoutX="14.0" layoutY="186.0" text="OS Memory:" />
-				<Separator layoutX="-5.0" layoutY="264.0" prefHeight="25.0" prefWidth="324.0" />
-				<Separator layoutX="-4.0" layoutY="406.0" prefHeight="17.0" prefWidth="324.0" />
-				<Button fx:id="compactMemBtn" layoutX="82.0" layoutY="436.0" mnemonicParsing="false" onAction="#compactMemBtnAction" onMouseClicked="#updateMaxMem" text="COMPACT MEMORY!!" />
-				<Label layoutX="14.0" layoutY="298.0" text="Process ID:" />
-				<Label layoutX="14.0" layoutY="334.0" text="Process Size:" />
-				<Button fx:id="addMemBtn" layoutX="24.0" layoutY="373.0" mnemonicParsing="false" onAction="#addMemBtnAction" onMouseClicked="#updateMaxMem" text="ADD TO MEMORY" />
-				<Button fx:id="removeMemBtn" layoutX="149.0" layoutY="373.0" mnemonicParsing="false" onAction="#removeMemBtnAction" onMouseClicked="#updateMaxMem" text="REMOVE FROM MEMORY" />
-				<TextField fx:id="totalMemTextField" layoutX="117.0" layoutY="134.0" onAction="#updateMaxMem" onKeyTyped="#updateMaxMem" onMouseMoved="#updateMaxMem" />
-				<TextField fx:id="osMemTextField" layoutX="117.0" layoutY="180.0" />
-				<TextField fx:id="processSizeTextField" layoutX="117.0" layoutY="328.0" />
-				<ComboBox fx:id="pidComboBox" layoutX="115.0" layoutY="294.0" prefWidth="150.0" promptText="-- Select --" visibleRowCount="8" />
-				<Text layoutX="260.0" layoutY="291.0" rotate="-90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEMORY!">
+				<Label fx:id="totalMemLabel" layoutX="17.0" layoutY="237.0" text="Total Memory:" />
+				<Label layoutX="14.0" layoutY="173.0" text="OS Memory:" />
+				<Separator layoutX="-8.0" layoutY="327.0" prefHeight="17.0" prefWidth="390.0" />
+				<Button fx:id="compactMemBtn" layoutX="122.0" layoutY="542.0" mnemonicParsing="false" onAction="#compactMemBtnAction" onMouseClicked="#updateMaxMem" text="COMPACT MEMORY!!" />
+				<Label layoutX="14.0" layoutY="403.0" text="Process ID:" />
+				<Label layoutX="14.0" layoutY="441.0" prefHeight="21.0" prefWidth="110.0" text="Process Size:" />
+				<Button fx:id="addMemBtn" layoutX="113.0" layoutY="489.0" mnemonicParsing="false" onAction="#addMemBtnAction" onMouseClicked="#updateMaxMem" text="ADD" />
+				<Button fx:id="removeMemBtn" layoutX="197.0" layoutY="489.0" mnemonicParsing="false" onAction="#removeMemBtnAction" onMouseClicked="#updateMaxMem" text="REMOVE" />
+				<TextField fx:id="totalMemTextField" layoutX="156.0" layoutY="232.0" onAction="#updateMaxMem" onKeyTyped="#updateMaxMem" onMouseMoved="#updateMaxMem" />
+				<TextField fx:id="osMemTextField" layoutX="156.0" layoutY="168.0" />
+				<TextField fx:id="processSizeTextField" layoutX="156.0" layoutY="437.0" />
+				<ComboBox fx:id="pidComboBox" layoutX="154.0" layoutY="399.0" prefWidth="150.0" promptText="-- Select --" visibleRowCount="8" />
+				<Text layoutX="328.0" layoutY="350.0" rotate="-90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEMORY">
 					<font>
 						<Font name="Ebrima Bold" size="39.0" />
 					</font>
 				</Text>
-				<Text layoutX="265.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K" />
-				<Text layoutX="265.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K" />
-				<Text layoutX="265.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K" />
-            <TextArea fx:id="outputTextArea" layoutX="371.0" layoutY="69.0" prefHeight="408.0" prefWidth="256.0" text="                                                                                                                                                                          To begin, enter values for the total memory size and operating system size and click the &quot;Create Memory&quot; Button.  Then, select an algorithm and add some Processes!" wrapText="true" />
-            <Button fx:id="createMemoryButton" layoutX="100.0" layoutY="232.0" mnemonicParsing="false" onAction="#createMemory" text="Create Memory" />
+				<Text layoutX="305.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K" />
+				<Text layoutX="305.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K" />
+				<Text layoutX="305.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K" />
+            <TextArea fx:id="outputTextArea" layoutX="464.0" layoutY="130.0" prefHeight="472.0" prefWidth="286.0" text="To begin, enter values for the operating system size and total size of memory and press &quot;Create Memory&quot;.  Then select an algorithm and add some Processes!" wrapText="true" />
+            <Button fx:id="createMemoryButton" layoutX="138.0" layoutY="281.0" mnemonicParsing="false" onAction="#createMemory" text="Create Memory" />
+            <Text layoutX="288.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="By Kathryn Porter and Danny Fayaud" />
+            <Separator layoutX="-7.0" layoutY="525.0" prefHeight="17.0" prefWidth="390.0" />
 			</children>
 		</AnchorPane>
 	</children>
