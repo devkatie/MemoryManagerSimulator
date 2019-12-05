@@ -6,16 +6,17 @@ package model;
 public class OutputString {
 	private MemoryList memList;
 	private String outputString;
-	private final String WAITING_QUEUE_HEADER = "WAITING QUEUE\n--------------\n\n";
+	private final String WAITING_QUEUE_HEADER = "\tWAITING QUEUE\n--------------------------------\n\n";
 	private final String MEMORY_HEADER = "\n\tMEMORY\n--------------------------------\n";
 	private final String DIVIDER = " *********************** ";
 
 	public OutputString(MemoryList memList) {
 		super();
 		this.memList = memList;
-		this.outputString = WAITING_QUEUE_HEADER;
-		buildWaitingListString();
+		this.outputString = "";
 		buildOutputString();
+		buildWaitingListString();
+
 	}
 
 // The main bulk of the output string.  	
@@ -48,11 +49,13 @@ public class OutputString {
 // Hoping to implement this if we can implement a waitingQueue	
 	
 	private void buildWaitingListString() {
+		
+		outputString += WAITING_QUEUE_HEADER;
 		if (memList.getWaitingQueue().isEmpty()) {
-			outputString += "EMPTY\n\n";
+			outputString += "\tEMPTY\n\n";
 		}
 		for (int i = 0; i < memList.getWaitingQueue().size(); i++) {
-			outputString += "P" + memList.getWaitingQueue().get(i).getProcessID() + "\t"
+			outputString += "\tP" + memList.getWaitingQueue().get(i).getProcessID() + "\t"
 					+ memList.getWaitingQueue().get(i).getSize() + "KB\n";
 		}
 
