@@ -1,5 +1,8 @@
 package model;
 
+// Written by:  Danny Fayaud
+// Process class is the basic unit of the project.  
+
 public class Process {
 	
 	private int processID;
@@ -11,6 +14,9 @@ public class Process {
 		this.processID = processID;
 		this.size = size;
 	}
+	
+// Deep copy constructor	
+	
 	public Process(Process process) {
 		super();
 		this.processID = process.getProcessID();

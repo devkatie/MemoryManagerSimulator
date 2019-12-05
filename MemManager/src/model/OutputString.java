@@ -1,5 +1,8 @@
 package model;
 
+//Written by: Danny Fayaud
+// OutputString is passed a MemoryList object and produces a chart in String form to be displayed in a text area. 
+
 public class OutputString {
 	private MemoryList memList;
 	private String outputString;
@@ -15,6 +18,8 @@ public class OutputString {
 		buildOutputString();
 	}
 
+// The main bulk of the output string.  	
+	
 	private void buildOutputString() {
 		outputString += MEMORY_HEADER + DIVIDER + "0KB\n\n";
 		int sizeInt = 0;
@@ -40,6 +45,8 @@ public class OutputString {
 		return outputString;
 	}
 
+// Hoping to implement this if we can implement a waitingQueue	
+	
 	private void buildWaitingListString() {
 		if (memList.getWaitingQueue().isEmpty()) {
 			outputString += "EMPTY\n\n";

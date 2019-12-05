@@ -54,14 +54,14 @@ public class GUIController implements Initializable {
 
 	private MemoryList memoryList;
 
-	
 	public void createMemory() {
-				this.memoryList = new MemoryList(Integer.parseInt(totalMemTextField.getText()), Integer.parseInt(osMemTextField.getText()));
-				outputTextArea.clear();
-				outputTextArea.setText(new OutputString(memoryList).getOutputString());
-				
+		this.memoryList = new MemoryList(Integer.parseInt(totalMemTextField.getText()),
+				Integer.parseInt(osMemTextField.getText()));
+		outputTextArea.clear();
+		outputTextArea.setText(new OutputString(memoryList).getOutputString());
+
 	}
-	
+
 	public void updateMaxMem() {
 		/*
 		 * updating the max memory text field that is at the bottom of the memory
@@ -73,11 +73,10 @@ public class GUIController implements Initializable {
 	public void compactMemBtnAction() {
 //		pushing button does whatever's here
 
-	
 		memoryList.compact();
 		outputTextArea.clear();
 		outputTextArea.setText(new OutputString(memoryList).getOutputString());
-		
+
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
 		alert.show();
@@ -86,14 +85,12 @@ public class GUIController implements Initializable {
 	public void addMemBtnAction() {
 //		pushing button does whatever's here
 
-
 		memoryList.addProcess(pidComboBox.getValue(), Integer.parseInt(processSizeTextField.getText()),
 				parseAlgorithmCode(algorithmComboBox.getValue()));
 
-
 		outputTextArea.clear();
 		outputTextArea.setText(new OutputString(memoryList).getOutputString());
-		
+
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
 		alert.show();
@@ -101,13 +98,11 @@ public class GUIController implements Initializable {
 
 	public void removeMemBtnAction() {
 //		pushing button does whatever's here
-		
 
 		memoryList.removeProcess(pidComboBox.getValue());
 		outputTextArea.clear();
 		outputTextArea.setText(new OutputString(memoryList).getOutputString());
-	
-		
+
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setContentText("We didn't program this yet!");
 		alert.show();
