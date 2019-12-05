@@ -46,11 +46,11 @@ public class GUIController implements Initializable {
 	private Button removeMemBtn;
 	@FXML
 	private Text maxMemLabel;
-	
+	@FXML
 	private TextArea outputTextArea;
 
 //DANNYCODE
-	private MemoryList memoryList = new MemoryList(2000, 200);
+	private MemoryList memoryList;
 //ENDDANNYCODE
 	
 	public void updateMaxMem() {
@@ -58,6 +58,8 @@ public class GUIController implements Initializable {
 		 * updating the max memory text field that is at the bottom of the memory
 		 * visualization
 		 */
+//DANNYCODE IM CHANGING THIS TO A "CREATE MEMORY" FUNCTION... WE CAN'T CHANGE MEM AND OS DYNAMICALLY
+		
 
 		if (!(totalMemTextField.getText().equals(""))) {
 			maxMemLabel.setText(this.totalMemTextField.getText() + "K");

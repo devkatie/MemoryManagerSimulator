@@ -7,11 +7,14 @@ public class MemoryList {
 	private ArrayList<Process> list;
 	private ArrayList<Process> waitingQueue;
 	private int memorySize;
+	private int totalMem = 0;
 	private int algorithmID;
+	private boolean success = false;
 
 	public MemoryList(int memorySize, int osSize) {
 		super();
 		this.memorySize = memorySize;
+		this.totalMem += osSize;
 		this.list = new ArrayList<Process>();
 		this.waitingQueue = new ArrayList<Process>();
 		this.algorithmID = 0;
@@ -53,6 +56,7 @@ public class MemoryList {
 			addWorstFit(process.getProcessID(), process.getSize());
 			break;
 		}
+		patchEmptySpace();
 	}
 	
 	public void removeProcess(int processID) {
@@ -64,6 +68,7 @@ public class MemoryList {
 		}
 		consolidateFreeSpace();
 		consolidateFreeSpace();
+		patchEmptySpace();
 	}
 
 	private void consolidateFreeSpace() {
@@ -74,6 +79,7 @@ public class MemoryList {
 			}
 		}
 		setPositions();
+		patchEmptySpace();
 	}
 
 	private void setPositions() {
@@ -82,36 +88,36 @@ public class MemoryList {
 		}
 	}
 
-	public void addWorstFit(int processID, int processSize) {
+	private void addWorstFit(int processID, int processSize) {
 		ArrayList<Process> gapList = buildGapList(processSize);
 		if (gapList.isEmpty()) {
-			Process p = new Process(processID, processSize);
-			if(!isInWaitingQueue(p)) {
-				waitingQueue.add(p);
-			}
 			
 			return;
 		}
+		if(processSize<=gapList.get(0).getSize()) {
 		gapList.sort((Process a, Process b) -> b.getSize() - a.getSize());
 		int position = gapList.get(0).getPosition();
 		list.add(position, new Process(processID, processSize));
 		list.get(position).setPosition(position);
 		updateGap(position + 1, processSize);
 		setPositions();
+
+		}
 	}
 
 	private boolean isInWaitingQueue(Process p) {
 		for(int i = 0; i < waitingQueue.size(); i++) {
 			if(p.getProcessID() == waitingQueue.get(i).getProcessID()) {
-				return false;
+				return true;
 			}
 		}
 		return false;
 	}
 
-	public void addBestFit(int processID, int processSize) {
+	private void addBestFit(int processID, int processSize) {
 		ArrayList<Process> gapList = buildGapList(processSize);
 		if (gapList.isEmpty()) {
+			success = false;
 			Process p = new Process(processID, processSize);
 			if(!isInWaitingQueue(p)) {
 				waitingQueue.add(p);
@@ -122,30 +128,33 @@ public class MemoryList {
 		for (int i = 0; i < gapList.size(); i++) {
 			gapList.get(i).setSize(gapList.get(i).getSize() - processSize);
 		}
-
+		if(processSize<=gapList.get(0).getSize()) {
 		gapList.sort((Process a, Process b) -> a.getSize() - b.getSize());
 		int position = gapList.get(0).getPosition();
 		list.add(position, new Process(processID, processSize));
 		list.get(position).setPosition(position);
 		updateGap(position + 1, processSize);
 		setPositions();
+		}
 	}
 
-	public void addFirstFit(int processID, int processSize) {
+	private void addFirstFit(int processID, int processSize) {
 		ArrayList<Process> gapList = buildGapList(processSize);
 		if (gapList.isEmpty()) {
+			success = false;
 			Process p = new Process(processID, processSize);
 			if(!isInWaitingQueue(p)) {
 				waitingQueue.add(p);
 			}
 			return;
 		}
-
+		if(processSize<=gapList.get(0).getSize()) {
 		int position = gapList.get(0).getPosition();
 		list.add(position, new Process(processID, processSize));
 		list.get(position).setPosition(position);
 		updateGap(position + 1, processSize);
 		setPositions();
+		}
 	}
 
 	private void updateGap(int position, int processSize) {
@@ -177,9 +186,30 @@ public class MemoryList {
 		}
 		list.get(list.size() - 1).setSize(memorySize - totalMemoryUsed);
 		setPositions();
-
+//		addFromWaitingQueue();
+		patchEmptySpace();
 	}
 
+
+	private void addFromWaitingQueue() {
+		for(int i = 0; i < waitingQueue.size(); i++) {
+			addProcess(waitingQueue.get(i), algorithmID);
+		}
+		for(int i = waitingQueue.size()-1; i>=0; i--) {
+			if(isInMemory(waitingQueue.get(i))) {
+				waitingQueue.remove(i);
+			}
+		}
+	}
+	
+	private boolean isInMemory(Process process) {
+		for(int i = 0; i < list.size(); i++) {
+			if(process.getProcessID() == list.get(i).getProcessID()) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public ArrayList<Process> getWaitingQueue() {
 		return waitingQueue;
@@ -191,6 +221,14 @@ public class MemoryList {
 
 	public int getAlgorithmID() {
 		return algorithmID;
+	}
+	
+	public void patchEmptySpace() {
+		int total = 0;
+		for(int i = 0; i < list.size()-1; i++) {
+			total+=list.get(i).getSize();
+		}
+		list.get(list.size()-1).setSize(memorySize - total);
 	}
 
 	public void setAlgorithmID(int algorithmID) {

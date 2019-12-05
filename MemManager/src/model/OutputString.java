@@ -4,14 +4,14 @@ public class OutputString {
 	private MemoryList memList;
 	private String outputString;
 	private final String WAITING_QUEUE_HEADER = "WAITING QUEUE\n--------------\n\n";
-	private final String MEMORY_HEADER = "\nMEMORY\n--------------\n";
+	private final String MEMORY_HEADER = "\n\tMEMORY\n--------------------------------\n";
 	private final String DIVIDER = " *********************** ";
 
 	public OutputString(MemoryList memList) {
 		super();
 		this.memList = memList;
-		this.outputString = WAITING_QUEUE_HEADER;
-		buildWaitingListString();
+		this.outputString = "";
+//		buildWaitingListString();
 		buildOutputString();
 	}
 
