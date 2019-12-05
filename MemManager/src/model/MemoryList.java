@@ -110,7 +110,9 @@ public class MemoryList {
 	private void addWorstFit(int processID, int processSize) {
 		ArrayList<Process> gapList = buildGapList(processSize);
 		if (gapList.isEmpty()) {
+			Process p = new Process(processID, processSize);
 
+			waitingQueue.add(p);
 			return;
 		}
 		if (processSize <= gapList.get(0).getSize()) {
@@ -132,9 +134,9 @@ public class MemoryList {
 		if (gapList.isEmpty()) {
 			success = false;
 			Process p = new Process(processID, processSize);
-			if (!isInWaitingQueue(p)) {
+
 				waitingQueue.add(p);
-			}
+			
 			return;
 		}
 
@@ -147,7 +149,7 @@ public class MemoryList {
 			list.get(position).setPosition(position);
 			updateGap(position + 1, processSize);
 			setPositions();
-		}
+		
 	}
 	
 // Adds process to the first available gap. Same as other methods, just no sorting by size.
@@ -155,11 +157,9 @@ public class MemoryList {
 	private void addFirstFit(int processID, int processSize) {
 		ArrayList<Process> gapList = buildGapList(processSize);
 		if (gapList.isEmpty()) {
-			success = false;
 			Process p = new Process(processID, processSize);
-			if (!isInWaitingQueue(p)) {
-				waitingQueue.add(p);
-			}
+
+			waitingQueue.add(p);
 			return;
 		}
 			int position = gapList.get(0).getPosition();
@@ -205,7 +205,7 @@ public class MemoryList {
 		}
 		list.get(list.size() - 1).setSize(memorySize - totalMemoryUsed);
 		setPositions();
-//		addFromWaitingQueue();
+		addFromWaitingQueue();
 		patchEmptySpace();
 	}
 
@@ -214,13 +214,10 @@ public class MemoryList {
 	private void addFromWaitingQueue() {
 		int size = waitingQueue.size();
 		for (int i = 0; i < size; i++) {
-			addProcess(waitingQueue.get(i), algorithmID);
+			addProcess(waitingQueue.get(0), algorithmID);
+			waitingQueue.remove(0);
 		}
-		for (int i = size; i >= 0; i--) {
-			if (isInMemory(waitingQueue.get(i))) {
-				waitingQueue.remove(i);
-			}
-		}
+		
 	}
 
 //method to check if a Process is in memory.  PROBABLY won't be used.	

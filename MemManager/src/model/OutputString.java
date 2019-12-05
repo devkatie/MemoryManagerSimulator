@@ -13,8 +13,8 @@ public class OutputString {
 	public OutputString(MemoryList memList) {
 		super();
 		this.memList = memList;
-		this.outputString = "";
-//		buildWaitingListString();
+		this.outputString = WAITING_QUEUE_HEADER;
+		buildWaitingListString();
 		buildOutputString();
 	}
 
